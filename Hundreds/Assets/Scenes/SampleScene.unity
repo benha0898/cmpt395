@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 1598020926}
   - component: {fileID: 1598020930}
   - component: {fileID: 1598020929}
+  - component: {fileID: 1598020932}
   m_Layer: 5
   m_Name: Sphere
   m_TagString: Untagged
@@ -267,14 +268,14 @@ RectTransform:
   m_GameObject: {fileID: 1598020924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.58, y: 1.27}
+  m_AnchoredPosition: {x: 2, y: 1}
   m_SizeDelta: {x: 1, y: 1.241}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &1598020926
@@ -345,7 +346,7 @@ ConstantForce2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598020924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
@@ -363,13 +364,25 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1598020932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598020924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6ff6c7de56a4948bca826c59e7c3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1708782820
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +397,7 @@ GameObject:
   - component: {fileID: 1708782823}
   - component: {fileID: 1708782822}
   - component: {fileID: 1708782821}
+  - component: {fileID: 1708782827}
   m_Layer: 5
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -398,7 +412,7 @@ ConstantForce2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708782820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
@@ -503,6 +517,18 @@ RectTransform:
   m_AnchoredPosition: {x: -1.85, y: 1.27}
   m_SizeDelta: {x: 1, y: 1.241}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1708782827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708782820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6ff6c7de56a4948bca826c59e7c3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1800453771
 GameObject:
   m_ObjectHideFlags: 0
