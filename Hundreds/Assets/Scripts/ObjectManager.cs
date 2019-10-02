@@ -12,7 +12,9 @@ public class ObjectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>() as Rigidbody2D;
+        rb = this.GetComponent<Rigidbody2D>();
+
+        rb.mass = Random.Range(2,6);
         StartVelocity();
     }
 
@@ -26,7 +28,7 @@ public class ObjectManager : MonoBehaviour
     {
         int[] dir = new int[] {-1, 1};
         System.Random rand = new System.Random();
-        
+
         float x = Random.Range(1,4);
         float y = Random.Range(1,4);
         int xDir = dir[rand.Next(dir.Length)];
