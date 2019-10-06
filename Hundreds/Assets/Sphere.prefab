@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5078509960241209521}
   - component: {fileID: 5078509960241209522}
   - component: {fileID: 5078509960241209527}
+  - component: {fileID: 222847151451511168}
   m_Layer: 5
   m_Name: Sphere
   m_TagString: Untagged
@@ -146,5 +147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6ff6c7de56a4948bca826c59e7c3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxVelocity: 4
+  MaxVelocity: 6
   MaxMass: 6
+  PointsPrefab: {fileID: 1572291460048105373, guid: 610715f62b07f684fb0477f4d95d9a48,
+    type: 3}
+--- !u!222 &222847151451511168
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078509960241209551}
+  m_CullTransparentMesh: 0

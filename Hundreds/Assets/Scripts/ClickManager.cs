@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ClickManager : MonoBehaviour
 {
@@ -23,10 +24,20 @@ public class ClickManager : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log("something was clicked!");
-                Debug.Log(hit.collider.gameObject.name);
-                hit.collider.attachedRigidbody.AddForce(Vector2.up*0);
-                hit.collider.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0);
-                
+                if (hit.collider.gameObject.name == "Sphere(Clone)")
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    hit.collider.attachedRigidbody.AddForce(Vector2.up*0);
+                    float increment = Camera.main.orthographicSize * 2 * 1.0f / 100;
+                    if (hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
+                    {
+                        hit.collider.gameObject.transform.localScale += new Vector3(increment, increment, increment);
+                        GameObject pointsText = hit.collider.gameObject.transform.Find("PointsText(Clone)").gameObject;
+                        int points = int.Parse(pointsText.GetComponent<TextMeshPro>().text);
+                        points += 1;
+                        pointsText.GetComponent<TextMeshPro>().text = points.ToString();
+                    }
+                }
             }
             Debug.Log("Mouse Clicked");
         }
