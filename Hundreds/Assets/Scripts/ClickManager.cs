@@ -31,9 +31,15 @@ public class ClickManager : MonoBehaviour
                 {
                     Debug.Log(hit.collider.gameObject.name);
                     hit.collider.attachedRigidbody.AddForce(Vector2.up*0);
-                    float increment = Camera.main.orthographicSize * 2 * 1.0f / 100;
-                    if (hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
+
+                    int totalPoints = int.Parse(TotalPoints.GetComponent<TextMeshPro>().text);
+
+                    // Only grow an object if it still fits the screen, and if totalpoints < 100
+                    if ((hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
+                        && (totalPoints < 100))
                     {
+                        // Grow object by increment
+                        float increment = Camera.main.orthographicSize * 2 * 1.0f / 100;
                         hit.collider.gameObject.transform.localScale += new Vector3(increment, increment, increment);
 
                         // Add a point to the ball
@@ -43,7 +49,6 @@ public class ClickManager : MonoBehaviour
                         pointsText.GetComponent<TextMeshPro>().text = points.ToString();
 
                         // Add a point to total points
-                        int totalPoints = int.Parse(TotalPoints.GetComponent<TextMeshPro>().text);
                         totalPoints += 1;
                         TotalPoints.GetComponent<TextMeshPro>().text = totalPoints.ToString();
                     }
