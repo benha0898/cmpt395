@@ -5,6 +5,9 @@ using TMPro;
 
 public class ClickManager : MonoBehaviour
 {
+
+    public GameObject TotalPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +35,17 @@ public class ClickManager : MonoBehaviour
                     if (hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
                     {
                         hit.collider.gameObject.transform.localScale += new Vector3(increment, increment, increment);
+
+                        // Add a point to the ball
                         GameObject pointsText = hit.collider.gameObject.transform.Find("PointsText(Clone)").gameObject;
                         int points = int.Parse(pointsText.GetComponent<TextMeshPro>().text);
                         points += 1;
                         pointsText.GetComponent<TextMeshPro>().text = points.ToString();
+
+                        // Add a point to total points
+                        int totalPoints = int.Parse(TotalPoints.GetComponent<TextMeshPro>().text);
+                        totalPoints += 1;
+                        TotalPoints.GetComponent<TextMeshPro>().text = totalPoints.ToString();
                     }
                 }
             }

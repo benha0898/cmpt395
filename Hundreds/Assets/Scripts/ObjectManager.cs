@@ -13,7 +13,6 @@ public class ObjectManager : MonoBehaviour
 	private Rigidbody2D rb;
 	private int point;
 	private GameObject points;
-	// Starting size = 1/10 screen height
 	private float minSize;
 
 	// Start is called before the first frame update
@@ -28,7 +27,7 @@ public class ObjectManager : MonoBehaviour
 		StartVelocity();
 
 		// Set starting size relative to screen size
-		minSize = Camera.main.orthographicSize * 2 / 10;
+		minSize = Camera.main.orthographicSize * 2 / 10; // Starting size = 1/10 screen height
 		this.transform.localScale = new Vector3(minSize, minSize, minSize);
 
 		// Display points
