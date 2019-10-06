@@ -24,11 +24,11 @@ public class TouchManager : MonoBehaviour
             {
                 Debug.Log("something was clicked!");
                 Debug.Log(hit.collider.gameObject.name);
-                hit.collider.attachedRigidbody.AddForce(Vector2.up * 0);
                 hit.collider.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0);
 
             }
             Debug.Log("Mouse Clicked");
         }
     }
+
 }
