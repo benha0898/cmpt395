@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+	public GameObject PointsPrefab;
 	[Tooltip("Maximum Velocity of the object. -Max to Max.")]
 	public float MaxVelocity;
 	[Tooltip("Maximum Max of the object. 0 to Max.")]
 	public float MaxMass;
 
-
-
-	private Vector2 screenPos;
-	private Vector3 worldSize;
-	private Vector3 screenSize;
 	private Rigidbody2D rb;
+	private int point;
+	private GameObject points;
+	private float minSize;
 
 	// Start is called before the first frame update
 	void Start()
@@ -23,7 +22,18 @@ public class ObjectManager : MonoBehaviour
 
 		// Randomize Mass
 		rb.mass = Random.Range(2.0f, MaxMass);
+
+		// Randomize Velocity
 		StartVelocity();
+
+		// Set starting size relative to screen size
+		minSize = Camera.main.orthographicSize * 2 / 10; // Starting size = 1/10 screen height
+		this.transform.localScale = new Vector3(minSize, minSize, minSize);
+
+		// Display points
+		points = Instantiate(PointsPrefab, this.transform.position, Quaternion.identity, this.transform);
+		points.transform.localPosition = new Vector3(0f, 0f, -1f);
+		UpdatePoint();
 	}
 
 	void StartVelocity()
@@ -38,16 +48,17 @@ public class ObjectManager : MonoBehaviour
 	void Update()
 	{
 		BounceWall();
+		UpdatePoint();
 	}
 
 
 	void BounceWall()
 	{
-		screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
-		worldSize = this.GetComponent<Renderer>().bounds.size;
+		Vector2 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+		Vector3 worldSize = this.transform.localScale;
 		float orthoSize = Camera.main.orthographicSize;
-		screenSize = worldSize*(Screen.height / 2 / orthoSize);
-		Debug.Log("screenPos: " + screenPos + ". worldSize: " + worldSize + ". screenSize: " + screenSize);
+		Vector3 screenSize = worldSize*(Screen.height / 2 / orthoSize);
+		//Debug.Log(orthoSize + ". screenPos: " + screenPos + ". worldSize: " + worldSize + ". screenSize: " + screenSize);
 
 		if (((screenPos.y + screenSize.y/2) > Screen.height) || ((screenPos.y - screenSize.y/2) < 0f))
 		{
@@ -65,5 +76,10 @@ public class ObjectManager : MonoBehaviour
 		}
 		Vector3 newWorldPosition = Camera.main.ScreenToWorldPoint(screenPos);
 		this.transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
+	}
+
+	void UpdatePoint()
+	{
+
 	}
 }
