@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,18 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("GAMEMANAGER: : Timescale: " + Time.timeScale);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+        Time.timeScale = 1.0f;
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1.0f; 
     }
     // Update is called once per frame
     void Update()

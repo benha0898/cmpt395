@@ -190,7 +190,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2485923994502507047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2338403507675195931}
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1957560485597002356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1095,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 25934945320457567}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2338403507675195931}
+        m_MethodName: LoadMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9115697626482006949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,11 +1228,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2338403506566520401}
     m_Modifications:
-    - target: {fileID: 822501628963967484, guid: 5302f88224df68a40bc50a1200a1f5b2,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 822501628963967482, guid: 5302f88224df68a40bc50a1200a1f5b2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1265,6 +1282,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 822501628963967484, guid: 5302f88224df68a40bc50a1200a1f5b2,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 822501628963967485, guid: 5302f88224df68a40bc50a1200a1f5b2,
         type: 3}
