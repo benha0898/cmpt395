@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     {
 
 
-        _musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
     }
     // Update is called once per frame
     void Update()
