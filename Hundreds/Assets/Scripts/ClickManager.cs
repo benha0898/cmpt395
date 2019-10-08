@@ -25,7 +25,23 @@ public class ClickManager : MonoBehaviour
 	{
 		// Handle Growth based upon Mouse Click
 
-		if (Input.GetMouseButton(0)){
+		// If there is no Touch points, default to mouse
+		if ( Input.touchCount != 0 ) {
+			// Handle growth for Touch Screen touches
+			// Note: If touch is 0, then we never enter the loop
+			for (int i = 0; i < Input.touchCount; i++)
+			{
+				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
+				Vector2 touchPos2D = new Vector2(touchPos.x, touchPos.y);
+
+				RaycastHit2D hit = Physics2D.Raycast(touchPos2D, Vector2.zero);
+
+				if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
+				{
+					hit.collider.gameObject.transform.localScale += new Vector3(growthRate, growthRate, 0);
+				}
+			}
+		} else if (Input.GetMouseButton(0)) {
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
@@ -37,21 +53,6 @@ public class ClickManager : MonoBehaviour
 				growObject(hit);
 			}
 			Debug.Log("Mouse Clicked");
-		}
-
-		// Handle growth for Touch Screen touches
-		// Note: If touch is 0, then we never enter the loop
-		for (int i = 0; i < Input.touchCount; i++)
-		{
-			Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
-			Vector2 touchPos2D = new Vector2(touchPos.x, touchPos.y);
-
-			RaycastHit2D hit = Physics2D.Raycast(touchPos2D, Vector2.zero);
-
-			if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
-			{
-				hit.collider.gameObject.transform.localScale += new Vector3(growthRate, growthRate, 0);
-			}
 		}
 
 	}
