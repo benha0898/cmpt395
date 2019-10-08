@@ -38,7 +38,7 @@ public class ClickManager : MonoBehaviour
 
 				if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
 				{
-					hit.collider.gameObject.transform.localScale += new Vector3(growthRate, growthRate, 0);
+                    growObject(hit);
 				}
 			}
 		} else if (Input.GetMouseButton(0)) {
