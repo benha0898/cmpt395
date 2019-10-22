@@ -28,14 +28,16 @@ public class PauseManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+		GameManager.TogglePause();
         SceneManager.LoadScene("Main Menu");
-        Time.timeScale = 1.0f;
     }
 
     public void RestartLevel()
     {
+		// Reset can only be done from Pause screen, which is paused
+		GameManager.TogglePause();
+
         SceneManager.LoadScene("SampleScene");
-        Time.timeScale = 1.0f;
     }
     // Update is called once per frame
     void Update()
