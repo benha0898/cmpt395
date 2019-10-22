@@ -10,15 +10,20 @@ public class ObjectManager : MonoBehaviour
 	[Tooltip("Maximum Max of the object. 0 to Max.")]
 	public float MaxMass;
 
+	public bool clicked; // Check if object is clicked
+	public bool collided; // Check if object collides with another 
+
 	private Rigidbody2D rb;
-	private int point;
 	private GameObject points;
 	private float minSize;
+
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		rb = this.GetComponent<Rigidbody2D>();
+		clicked = false;
+		collided = false;
 
 		// Randomize Mass
 		rb.mass = Random.Range(2.0f, MaxMass);
@@ -33,7 +38,6 @@ public class ObjectManager : MonoBehaviour
 		// Display points
 		points = Instantiate(PointsPrefab, this.transform.position, Quaternion.identity, this.transform);
 		points.transform.localPosition = new Vector3(0f, 0f, -1f);
-		UpdatePoint();
 	}
 
 	void StartVelocity()
@@ -47,8 +51,9 @@ public class ObjectManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		CheckLoss();
+		clicked = false;
 		BounceWall();
-		UpdatePoint();
 	}
 
 
@@ -78,8 +83,20 @@ public class ObjectManager : MonoBehaviour
 		this.transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
 	}
 
-	void UpdatePoint()
+	void OnCollisionEnter2D(Collision2D other)
 	{
-
+		collided = true;
 	}
+	void OnCollisionExit2D(Collision2D other)
+	{
+		collided = false;
+	}
+
+	void CheckLoss()
+	{
+		if (clicked && collided) {
+			Debug.Log("You Lost. Boo!!!");
+		}
+	}
+
 }
