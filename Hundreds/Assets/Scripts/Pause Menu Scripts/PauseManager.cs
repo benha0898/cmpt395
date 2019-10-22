@@ -15,16 +15,12 @@ public class PauseManager : MonoBehaviour
 
     public void TogglePauseMenu()
     {
-        if (UI.GetComponentInChildren<Canvas>().enabled)
-        {
-            UI.GetComponentInChildren<Canvas>().enabled = false;
-            Time.timeScale = 1.0f;
+		GameManager.TogglePause();
 
-        }
-        else
-        {
+		if (GameManager.isGamePaused()) {
             UI.GetComponentInChildren<Canvas>().enabled = true;
-            Time.timeScale = 0f;
+		} else {
+            UI.GetComponentInChildren<Canvas>().enabled = false;
         }
 
         Debug.Log("GAMEMANAGER: : Timescale: " + Time.timeScale);
