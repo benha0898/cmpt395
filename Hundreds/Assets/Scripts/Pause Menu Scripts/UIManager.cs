@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public GameManager GM;
+    public PauseManager GM;
     public MusicManager MM;
 
     private Slider _musicSlider;
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         ScanForKeyStroke();
-        
+
     }
 
     void ScanForKeyStroke()

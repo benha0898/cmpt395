@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class PauseManager : MonoBehaviour
 {
     public UIManager UI;
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         else
         {
             UI.GetComponentInChildren<Canvas>().enabled = true;
-            Time.timeScale = 0f; 
+            Time.timeScale = 0f;
         }
 
         Debug.Log("GAMEMANAGER: : Timescale: " + Time.timeScale);
@@ -39,11 +39,11 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("SampleScene");
-        Time.timeScale = 1.0f; 
+        Time.timeScale = 1.0f;
     }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
