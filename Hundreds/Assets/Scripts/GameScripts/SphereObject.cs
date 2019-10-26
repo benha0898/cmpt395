@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectManager : MonoBehaviour
+public class SphereObject : MonoBehaviour
 {
 	public GameObject PointsPrefab;
 	[Tooltip("Maximum Velocity of the object. -Max to Max.")]
@@ -33,7 +33,6 @@ public class ObjectManager : MonoBehaviour
 		// Display points
 		points = Instantiate(PointsPrefab, this.transform.position, Quaternion.identity, this.transform);
 		points.transform.localPosition = new Vector3(0f, 0f, -1f);
-		UpdatePoint();
 	}
 
 	void StartVelocity()
@@ -48,7 +47,6 @@ public class ObjectManager : MonoBehaviour
 	void Update()
 	{
 		BounceWall();
-		UpdatePoint();
 	}
 
 
@@ -78,8 +76,4 @@ public class ObjectManager : MonoBehaviour
 		this.transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
 	}
 
-	void UpdatePoint()
-	{
-
-	}
 }
