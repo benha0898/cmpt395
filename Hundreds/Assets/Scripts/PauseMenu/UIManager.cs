@@ -32,10 +32,12 @@ public class UIManager : MonoBehaviour
 
     public void MusicSliderUpdate(float val)
     {
+        //Set the volume of the mixer to the value of the slider
         audioMixer.SetFloat("volume", musicSlider.value);
     }
     public void MusicToggle(bool val)
     {
+        //Toggles interactibility of the slider and toggles the sound of the mixer on or off
         musicSlider.interactable = musicSlider.interactable ? false : true;
         audioMixer.SetFloat("volume", musicSlider.interactable ? musicSlider.value : -80f);
  

@@ -983,6 +983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 2338403507675195931}
   MM: {fileID: 2338403506541240736}
+  musicSlider: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!1 &2338403507922938161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1385,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: -80
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: -80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

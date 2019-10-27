@@ -14,7 +14,7 @@ public class SoundEffectManager : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         audioSource.Play();
-        Debug.Log(col.relativeVelocity);
+        Debug.Log(col.relativeVelocity[0]);
     }
     // Update is called once per frame
     void Update()
