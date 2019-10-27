@@ -5,11 +5,10 @@ using UnityEngine;
 public class SphereObject : MonoBehaviour
 {
 	public GameObject PointsPrefab;
-	[Tooltip("Maximum Velocity of the object. -Max to Max.")]
-	public float MaxVelocity;
 	[Tooltip("Maximum Max of the object. 0 to Max.")]
 	public float MaxMass;
 
+	private float MaxVelocity;
 	private Rigidbody2D rb;
 	private int point;
 	private GameObject points;
@@ -33,6 +32,11 @@ public class SphereObject : MonoBehaviour
 		// Display points
 		points = Instantiate(PointsPrefab, this.transform.position, Quaternion.identity, this.transform);
 		points.transform.localPosition = new Vector3(0f, 0f, -1f);
+	}
+
+	public void SetMaximumVelocity(float n)
+	{
+		this.MaxVelocity = n;
 	}
 
 	void StartVelocity()
