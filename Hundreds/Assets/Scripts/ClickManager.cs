@@ -52,7 +52,6 @@ public class ClickManager : MonoBehaviour
 				Debug.Log("something was clicked!");
 				growObject(hit);
 			}
-			Debug.Log("Mouse Clicked");
 		}
 
 	}

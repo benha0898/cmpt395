@@ -6,7 +6,7 @@ public class MusicManager : MonoBehaviour
 {
     public void SetVolume(float val)
     {
-        GetComponent<AudioSource>().volume = val;
+        this.GetComponent<AudioSource>().volume = val;
     }
     // Start is called before the first frame update
     void Start()
