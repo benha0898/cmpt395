@@ -23,6 +23,10 @@ public class ClickManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		// Ignore all Mouse Clicks if the game is paused
+		if (GameManager.isGamePaused())
+			return;
+
 		// Handle Growth based upon Mouse Click
 
 		// If there is no Touch points, default to mouse

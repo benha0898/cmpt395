@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class PauseManager : MonoBehaviour
 {
     public UIManager UI;
     // Start is called before the first frame update
@@ -15,16 +15,12 @@ public class GameManager : MonoBehaviour
 
     public void TogglePauseMenu()
     {
-        if (UI.GetComponentInChildren<Canvas>().enabled)
-        {
-            UI.GetComponentInChildren<Canvas>().enabled = false;
-            Time.timeScale = 1.0f;
+		GameManager.TogglePause();
 
-        }
-        else
-        {
+		if (GameManager.isGamePaused()) {
             UI.GetComponentInChildren<Canvas>().enabled = true;
-            Time.timeScale = 0f; 
+		} else {
+            UI.GetComponentInChildren<Canvas>().enabled = false;
         }
 
         Debug.Log("GAMEMANAGER: : Timescale: " + Time.timeScale);
@@ -32,20 +28,22 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+		GameManager.TogglePause();
         SceneManager.LoadScene("Main Menu");
-        Time.timeScale = 1.0f;
     }
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene("SampleScene");
-        Time.timeScale = 1.0f; 
+		// Reset can only be done from Pause screen, which is paused
+		GameManager.TogglePause();
+
+        SceneManager.LoadScene("Endless Mode");
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

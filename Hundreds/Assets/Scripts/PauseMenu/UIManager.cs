@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
-    public GameManager GM;
+    public PauseManager GM;
     public MusicManager MM;
 
     public Slider musicSlider;

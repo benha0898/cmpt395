@@ -151,8 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointsPrefab: {fileID: 1572291460048105373, guid: 610715f62b07f684fb0477f4d95d9a48,
     type: 3}
-  MaxVelocity: 6
-  MaxMass: 6
+  MaxVelocity: 9
+  MaxMass: 9
 --- !u!222 &222847151451511168
 CanvasRenderer:
   m_ObjectHideFlags: 0
