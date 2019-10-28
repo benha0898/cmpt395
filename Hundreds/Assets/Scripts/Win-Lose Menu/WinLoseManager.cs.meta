@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6fd2883a47260d14caa76b323707d963
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - WinMenu: {fileID: 6853732623945701387, guid: 8ccede3849b0c4a40bae9d656a83f791,
+      type: 3}
+  - LoseMenu: {fileID: 6663508043946601254, guid: e30421fba006a21429a6093a2e05b28b,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
