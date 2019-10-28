@@ -42,8 +42,14 @@ public class ClickManager : MonoBehaviour
 
 				if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
 				{
-                    growObject(hit);
-					hit.collider.gameObject.GetComponent<ObjectManager>().clicked = true;
+					if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
+					{
+						Debug.Log("You Lost!");
+					}
+					else
+					{
+						growObject(hit);
+					}
 				}
 			}
 		} else if (Input.GetMouseButton(0)) {
@@ -54,8 +60,14 @@ public class ClickManager : MonoBehaviour
 
 			if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
 			{
-				growObject(hit);
-				hit.collider.gameObject.GetComponent<ObjectManager>().clicked = true;
+				if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
+				{
+					Debug.Log("You Lost!");
+				}
+				else
+				{
+					growObject(hit);
+				}
 			}
 		}
 

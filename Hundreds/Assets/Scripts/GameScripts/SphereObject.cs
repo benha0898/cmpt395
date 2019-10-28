@@ -8,6 +8,8 @@ public class SphereObject : MonoBehaviour
 	[Tooltip("Maximum Max of the object. 0 to Max.")]
 	public float MaxMass;
 
+	public bool collided;
+
 	private float MaxVelocity;
 	private Rigidbody2D rb;
 	private int point;
@@ -18,6 +20,7 @@ public class SphereObject : MonoBehaviour
 	void Start()
 	{
 		rb = this.GetComponent<Rigidbody2D>();
+		collided = false;
 
 		// Randomize Mass
 		rb.mass = Random.Range(2.0f, MaxMass);
@@ -78,6 +81,13 @@ public class SphereObject : MonoBehaviour
 		}
 		Vector3 newWorldPosition = Camera.main.ScreenToWorldPoint(screenPos);
 		this.transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
+	}
+
+	private void OnCollisionEnter2D(Collision2D other) {
+		collided = true;
+	}
+	private void OnCollisionExit2D(Collision2D other) {
+		collided = false;
 	}
 
 }
