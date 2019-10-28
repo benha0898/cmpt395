@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 7a8d8ee9cf4a07f418344bd320ef08b5
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Endless Mode.unity
     guid: c54df95b2c0ef7eb4aee4268ba266c50
   - enabled: 0
     path: Assets/Scenes/PlaceholderScenes/MultiPlayer.unity
