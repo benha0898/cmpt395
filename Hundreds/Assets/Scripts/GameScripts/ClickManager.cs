@@ -20,7 +20,10 @@ public class ClickManager : MonoBehaviour
 	void Start()
 	{
 		growthRate = Camera.main.orthographicSize * 2 * 1.0f / 100;
-		totalPoints = int.Parse(TotalPoints.GetComponent<TextMeshPro>().text);
+
+		// Initialize Total Points to 0
+		TotalPoints.GetComponent<TextMeshPro>().text = "0";
+		totalPoints = 0;
 	}
 
 	// Update is called once per frame
