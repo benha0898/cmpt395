@@ -12,12 +12,15 @@ using TMPro;
 public class ClickManager : MonoBehaviour
 {
 	public GameObject TotalPoints;		// Point text associated with object
+	public WinLoseManager WLM;
 	private float growthRate;
+	private int totalPoints;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		growthRate = Camera.main.orthographicSize * 2 * 1.0f / 100;
+		totalPoints = int.Parse(TotalPoints.GetComponent<TextMeshPro>().text);
 	}
 
 	// Update is called once per frame
@@ -28,6 +31,13 @@ public class ClickManager : MonoBehaviour
 			return;
 
 		// Handle Growth based upon Mouse Click
+
+		// If totalPoints is 100, go to Win Menu
+		if (totalPoints == 100)
+		{
+			Debug.Log("You Won!");
+			WLM.GetWinMenu();
+		}
 
 		// If there is no Touch points, default to mouse
 		if ( Input.touchCount != 0 ) {
@@ -45,11 +55,10 @@ public class ClickManager : MonoBehaviour
 					if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
 					{
 						Debug.Log("You Lost!");
+						WLM.GetLoseMenu();
 					}
 					else
-					{
 						growObject(hit);
-					}
 				}
 			}
 		} else if (Input.GetMouseButton(0)) {
@@ -63,11 +72,10 @@ public class ClickManager : MonoBehaviour
 				if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
 				{
 					Debug.Log("You Lost!");
+					WLM.GetLoseMenu();
 				}
 				else
-				{
 					growObject(hit);
-				}
 			}
 		}
 
@@ -76,8 +84,6 @@ public class ClickManager : MonoBehaviour
 	// Grow the Sphere Object
 	void growObject(RaycastHit2D hit)
 	{
-		int totalPoints = int.Parse(TotalPoints.GetComponent<TextMeshPro>().text);
-
 		// Only grow an object if it still fits the screen, and if totalpoints < 100
 		if ((hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
 				&& (totalPoints < 100))
