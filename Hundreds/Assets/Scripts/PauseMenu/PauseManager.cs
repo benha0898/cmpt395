@@ -39,6 +39,8 @@ public class PauseManager : MonoBehaviour
 
         SceneManager.LoadScene("Endless Mode");
     }
+
+
     // Update is called once per frame
     void Update()
     {
