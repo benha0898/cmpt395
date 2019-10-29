@@ -22,6 +22,9 @@ public class SpawnBalls : MonoBehaviour
 	{
 		cam = Camera.main;
 		spawnObjects();
+
+		if (GameManager.isGamePaused())
+			GameManager.TogglePause();
 	}
 
 	// Return a random Vector2 that is within 0.05f of the edges of the screen.
