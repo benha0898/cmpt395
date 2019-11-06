@@ -25,6 +25,7 @@ public class GameplayPauseScript : MonoBehaviour
 			return;
 
 		clickedTime += Time.deltaTime;
+		gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0);
 
 		if (clickedTime >= PauseDelay) {
 			pauseManager.TogglePauseMenu();
@@ -41,6 +42,7 @@ public class GameplayPauseScript : MonoBehaviour
 
 	void OnMouseUp()
 	{
+		gameObject.transform.localScale = new Vector3(1,1,0);
 		clickedTime = 0f;
 		enabled = false;
 	}
