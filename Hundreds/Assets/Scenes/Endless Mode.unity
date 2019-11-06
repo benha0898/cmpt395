@@ -147,6 +147,7 @@ MonoBehaviour:
   SpawnCap: 10
   BaseVelocity: 5
   VelocityScaler: 0.25
+  psbt: {fileID: 2464065299832320943, guid: 875ca86dce3535ce1a5f4380bbddbbec, type: 3}
 --- !u!4 &32128153
 Transform:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &239252836 stripped
 MonoBehaviour:
@@ -861,7 +862,7 @@ PrefabInstance:
     - target: {fileID: 2965362343203917705, guid: c13904c739b4e624fb847a2071fa0f0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2965362343203917705, guid: c13904c739b4e624fb847a2071fa0f0c,
         type: 3}
