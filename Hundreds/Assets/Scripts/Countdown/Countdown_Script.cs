@@ -10,9 +10,11 @@ public class Countdown_Script : MonoBehaviour
     public float countdownTime;
     private TextMeshPro countdownText;
 
+
     // Start is called before the first frame update
     void Start()
     {
+
         countdownText = GetComponent<TextMeshPro>();
         countdownText.text = countdownTime.ToString("0");
 
@@ -21,6 +23,10 @@ public class Countdown_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if the game is paused. If it is, unpause it 
+        if (GameManager.isGamePaused())
+            GameManager.TogglePause();
+
         // When the timer reaches 0, switch to endless mode 
         if (countdownTime <= 0)
         {

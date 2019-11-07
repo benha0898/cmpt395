@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public void LoadGameLevel()
+    {
+        SceneManager.LoadScene("LevelIncrease");
+    }
+
     public void LoadCountdown()
     {
         SceneManager.LoadScene("Countdown");
