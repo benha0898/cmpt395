@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public void LoadCountdown()
+    {
+        SceneManager.LoadScene("Countdown");
+    }
+
     public void PlaySinglePayer()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Endless Mode");
     }
 
     public void PlayMultiPayer()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-    }
-
-    public void PlayOptions()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene("Cooperative Mode");
     }
 
 }
