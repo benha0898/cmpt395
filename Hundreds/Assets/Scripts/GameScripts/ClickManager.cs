@@ -36,13 +36,12 @@ public class ClickManager : MonoBehaviour
 		if (totalPoints == 100)
 			WLM.GetWinMenu();
 
+		// Get All Collided gameobjects and apply function based on type
 		foreach (GameObject entry in GetInputCollisions())
 		{
 			if (entry.name == "Sphere(Clone)")
 				growSphereObject(entry);
 		}
-
-
 	}
 
 	// Handles both the Mouse and Touch Inputs upon objects, and returns all
@@ -94,8 +93,7 @@ public class ClickManager : MonoBehaviour
 		}
 
 		// Only grow an object if it still fits the screen, and if totalpoints < 100
-		if ((sphere.transform.localScale[1] < Camera.main.orthographicSize * 2)
-				&& (totalPoints < 100))
+		if ((sphere.transform.localScale[1] < Camera.main.orthographicSize * 2))
 		{
 			// Grow object by increment
 			sphere.transform.localScale += new Vector3(growthRate, growthRate, growthRate);
