@@ -5,8 +5,6 @@ using TMPro;
 
 /* This class is dedicated to handling Mouse Clicks and Multiple Touch Screen
  * touches upon the Balls in a Scene
- *
- *
  */
 
 public class ClickManager : MonoBehaviour
@@ -24,6 +22,7 @@ public class ClickManager : MonoBehaviour
 		// Initialize Total Points to 0
 		TotalPoints.GetComponent<TextMeshPro>().text = "0";
 		totalPoints = 0;
+
 	}
 
 	// Update is called once per frame
@@ -33,69 +32,74 @@ public class ClickManager : MonoBehaviour
 		if (GameManager.isGamePaused())
 			return;
 
-		// Handle Growth based upon Mouse Click
-
 		// If totalPoints is 100, go to Win Menu
 		if (totalPoints == 100)
-		{
-			Debug.Log("You Won!");
 			WLM.GetWinMenu();
+
+		// Get All Collided gameobjects and apply function based on type
+		foreach (GameObject entry in GetInputCollisions())
+		{
+			if (entry.name == "Sphere(Clone)")
+				growSphereObject(entry);
 		}
-
-		// If there is no Touch points, default to mouse
-		if ( Input.touchCount != 0 ) {
-			// Handle growth for Touch Screen touches
-			// Note: If touch is 0, then we never enter the loop
-			for (int i = 0; i < Input.touchCount; i++)
-			{
-				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
-				Vector2 touchPos2D = new Vector2(touchPos.x, touchPos.y);
-
-				RaycastHit2D hit = Physics2D.Raycast(touchPos2D, Vector2.zero);
-
-				if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
-				{
-					if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
-					{
-						Debug.Log("You Lost!");
-						WLM.GetLoseMenu();
-					}
-					else
-						growObject(hit);
-				}
-			}
-		} else if (Input.GetMouseButton(0)) {
-			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-			RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-			if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
-			{
-				if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
-				{
-					Debug.Log("You Lost!");
-					WLM.GetLoseMenu();
-				}
-				else
-					growObject(hit);
-			}
-		}
-
 	}
 
-	// Grow the Sphere Object
-	void growObject(RaycastHit2D hit)
+	// Handles both the Mouse and Touch Inputs upon objects, and returns all
+	// objects in a HashSet
+	HashSet<GameObject> GetInputCollisions()
 	{
+		// Store all Collisions in a set to prevent duplication
+		HashSet<GameObject> FrameCollisions = new HashSet<GameObject>();
+
+		// If there is no Touch points, default to mouse
+		for (int i = 0; i < Input.touchCount; i++)
+		{
+			GameObject collisionObj = getCollidedGameObject(Input.touches[i].position);
+			if (collisionObj)
+				FrameCollisions.Add(collisionObj);
+		}
+
+		// Handle Mouse Input if there is any
+		if (Input.GetMouseButton(0)) {
+			GameObject collisionObj = getCollidedGameObject(Input.mousePosition);
+			if (collisionObj)
+				FrameCollisions.Add(collisionObj);
+		}
+
+		return FrameCollisions;
+	}
+
+	// Get the Game Object that the provided input vector collides with
+	GameObject getCollidedGameObject(Vector3 position)
+	{
+		// Implicit conversion from Vector3 to Vector2
+		Vector2 inputPos = Camera.main.ScreenToWorldPoint(position);
+		RaycastHit2D hit = Physics2D.Raycast(inputPos, Vector2.zero);
+
+		if (hit.collider)
+			return hit.collider.gameObject;
+
+		return null;
+	}
+
+
+	// Grow the Sphere Object
+	void growSphereObject(GameObject sphere)
+	{
+		if (sphere.GetComponent<SphereObject>().collided) {
+			Debug.Log("You Lost!");
+			WLM.GetLoseMenu();
+			return;
+		}
+
 		// Only grow an object if it still fits the screen, and if totalpoints < 100
-		if ((hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
-				&& (totalPoints < 100))
+		if ((sphere.transform.localScale[1] < Camera.main.orthographicSize * 2))
 		{
 			// Grow object by increment
-			hit.collider.gameObject.transform.localScale += new Vector3(growthRate, growthRate, growthRate);
+			sphere.transform.localScale += new Vector3(growthRate, growthRate, growthRate);
 
 			// Add a point to the ball
-			GameObject pointsText = hit.collider.gameObject.transform.Find("PointsText(Clone)").gameObject;
+			GameObject pointsText = sphere.transform.Find("PointsText(Clone)").gameObject;
 			int points = int.Parse(pointsText.GetComponent<TextMeshPro>().text);
 			points += 1;
 			pointsText.GetComponent<TextMeshPro>().text = points.ToString();

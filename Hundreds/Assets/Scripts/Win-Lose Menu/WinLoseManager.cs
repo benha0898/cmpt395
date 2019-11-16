@@ -42,13 +42,13 @@ public class WinLoseManager : MonoBehaviour
     {
 		// Reset can only be done from Pause screen, which is paused
 		GameManager.TogglePause();
-        SceneManager.LoadScene("Endless Mode");
+        SceneManager.LoadScene("Countdown");
     }
 
     public void LoadNextLevel()
     {
 		GameManager.TogglePause();
         GameManager.IncrementLevel();
-        SceneManager.LoadScene("Endless Mode");
+        SceneManager.LoadScene("Countdown");
     }
 }
