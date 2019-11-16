@@ -5,8 +5,6 @@ using TMPro;
 
 /* This class is dedicated to handling Mouse Clicks and Multiple Touch Screen
  * touches upon the Balls in a Scene
- *
- *
  */
 
 public class ClickManager : MonoBehaviour
@@ -33,60 +31,54 @@ public class ClickManager : MonoBehaviour
 		if (GameManager.isGamePaused())
 			return;
 
-		// Handle Growth based upon Mouse Click
-
 		// If totalPoints is 100, go to Win Menu
 		if (totalPoints == 100)
-		{
-			Debug.Log("You Won!");
 			WLM.GetWinMenu();
-		}
 
+		HandleInputs();
+	}
+
+	// Handles both the Mouse and Touch Inputs upon objects
+	void HandleInputs()
+	{
 		// If there is no Touch points, default to mouse
 		if ( Input.touchCount != 0 ) {
 			// Handle growth for Touch Screen touches
 			// Note: If touch is 0, then we never enter the loop
 			for (int i = 0; i < Input.touchCount; i++)
 			{
-				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
-				Vector2 touchPos2D = new Vector2(touchPos.x, touchPos.y);
-
-				RaycastHit2D hit = Physics2D.Raycast(touchPos2D, Vector2.zero);
+				RaycastHit2D hit = getInputCollision(Input.touches[i].position);
 
 				if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
-				{
-					if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
-					{
-						Debug.Log("You Lost!");
-						WLM.GetLoseMenu();
-					}
-					else
-						growObject(hit);
-				}
-			}
-		} else if (Input.GetMouseButton(0)) {
-			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-			RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-			if (hit.collider != null && hit.collider.gameObject.name == "Sphere(Clone)")
-			{
-				if (hit.collider.gameObject.GetComponent<SphereObject>().collided)
-				{
-					Debug.Log("You Lost!");
-					WLM.GetLoseMenu();
-				}
-				else
 					growObject(hit);
 			}
-		}
+		} else if (Input.GetMouseButton(0)) {
+			RaycastHit2D hit = getInputCollision(Input.mousePosition);
 
+			if (hit.collider && hit.collider.gameObject.name == "Sphere(Clone)")
+				growObject(hit);
+
+		}
 	}
+
+	RaycastHit2D getInputCollision(Vector3 position)
+	{
+		// Implicit conversion from Vector3 to Vector2
+		Vector2 inputPos = Camera.main.ScreenToWorldPoint(position);
+		return Physics2D.Raycast(inputPos, Vector2.zero);
+	}
+
 
 	// Grow the Sphere Object
 	void growObject(RaycastHit2D hit)
 	{
+		if (hit.collider.gameObject.GetComponent<SphereObject>().collided) {
+			Debug.Log("You Lost!");
+			WLM.GetLoseMenu();
+			return;
+		}
+
+
 		// Only grow an object if it still fits the screen, and if totalpoints < 100
 		if ((hit.collider.gameObject.transform.localScale[1] < Camera.main.orthographicSize * 2)
 				&& (totalPoints < 100))
