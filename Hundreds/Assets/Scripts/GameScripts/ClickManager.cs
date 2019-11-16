@@ -22,6 +22,7 @@ public class ClickManager : MonoBehaviour
 		// Initialize Total Points to 0
 		TotalPoints.GetComponent<TextMeshPro>().text = "0";
 		totalPoints = 0;
+
 	}
 
 	// Update is called once per frame
@@ -35,27 +36,38 @@ public class ClickManager : MonoBehaviour
 		if (totalPoints == 100)
 			WLM.GetWinMenu();
 
-		HandleInputs();
+		foreach (GameObject entry in GetInputCollisions())
+		{
+			if (entry.name == "Sphere(Clone)")
+				growSphereObject(entry);
+		}
+
+
 	}
 
-	// Handles both the Mouse and Touch Inputs upon objects
-	void HandleInputs()
+	// Handles both the Mouse and Touch Inputs upon objects, and returns all
+	// objects in a HashSet
+	HashSet<GameObject> GetInputCollisions()
 	{
+		// Store all Collisions in a set to prevent duplication
+		HashSet<GameObject> FrameCollisions = new HashSet<GameObject>();
+
 		// If there is no Touch points, default to mouse
-		if ( Input.touchCount != 0 ) {
-			// Handle growth for Touch Screen touches
-			// Note: If touch is 0, then we never enter the loop
-			for (int i = 0; i < Input.touchCount; i++)
-			{
-				GameObject collisionObj = getCollidedGameObject(Input.touches[i].position);
-				if (collisionObj && collisionObj.name == "Sphere(Clone)")
-					growObject(collisionObj);
-			}
-		} else if (Input.GetMouseButton(0)) {
-			GameObject collisionObj = getCollidedGameObject(Input.mousePosition);
-			if (collisionObj && collisionObj.name == "Sphere(Clone)")
-				growObject(collisionObj);
+		for (int i = 0; i < Input.touchCount; i++)
+		{
+			GameObject collisionObj = getCollidedGameObject(Input.touches[i].position);
+			if (collisionObj)
+				FrameCollisions.Add(collisionObj);
 		}
+
+		// Handle Mouse Input if there is any
+		if (Input.GetMouseButton(0)) {
+			GameObject collisionObj = getCollidedGameObject(Input.mousePosition);
+			if (collisionObj)
+				FrameCollisions.Add(collisionObj);
+		}
+
+		return FrameCollisions;
 	}
 
 	// Get the Game Object that the provided input vector collides with
