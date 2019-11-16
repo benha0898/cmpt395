@@ -8,14 +8,15 @@ using UnityEngine;
 public class GameplayPauseScript : MonoBehaviour
 {
 	private float clickedTime;
-	private bool isClicked;
+	private bool isClicked, lastFrameClicked;
 	private PauseManager pauseManager;
 	private float PauseDelay;
 
 	void Start()
 	{
-		enabled = false;
 		clickedTime = 0f;
+		isClicked = false;
+		lastFrameClicked = false;
 	}
 
 	// While enabled, count how long the pause button has been pressed.
@@ -24,27 +25,34 @@ public class GameplayPauseScript : MonoBehaviour
 		if (GameManager.isGamePaused())
 			return;
 
+		// Return if the Object isn't Clicked
+		if (!isClicked) {
+			// Reset if the object was clicked last frame
+			if (lastFrameClicked)
+				reset();
+			return;
+		}
+
+
 		clickedTime += Time.deltaTime;
 		gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0);
 
 		if (clickedTime >= PauseDelay) {
 			pauseManager.TogglePauseMenu();
-			enabled = false;
 		}
+
+		lastFrameClicked = true;
+		isClicked = false;
 	}
-	/* Enable Update method to start counting, and disable to reset */
 
-    void OnMouseDown()
-    {
-		enabled = true;
-    }
+	// Method for Click Manager to set clicked option
+	public void setClicked() { isClicked = true; }
 
-
-	void OnMouseUp()
+	// Reset default
+	void reset()
 	{
 		gameObject.transform.localScale = new Vector3(1,1,0);
 		clickedTime = 0f;
-		enabled = false;
 	}
 
 	// Set Reference to PauseManager so that we may pause the game.
