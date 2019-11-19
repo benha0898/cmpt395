@@ -20,4 +20,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Cooperative Mode");
     }
 
+    public void LoadHighscores()
+    {
+        SceneManager.LoadScene("Scores");
+    }
+
 }
