@@ -24,12 +24,14 @@ public class WinLoseManager : MonoBehaviour
     {
         GameManager.TogglePause();
         GameObject menu = Instantiate(WinMenu, this.transform.position, Quaternion.identity, this.transform);
+        menu.transform.localPosition = new Vector3(transform.position.x, transform.position.y, 100);
     }
     
     public void GetLoseMenu()
     {
         GameManager.TogglePause();
         GameObject menu = Instantiate(LoseMenu, this.transform.position, Quaternion.identity, this.transform);
+        menu.transform.localPosition = new Vector3(transform.position.x, transform.position.y, 100);
     }
 
     public void LoadMainMenu()

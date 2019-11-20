@@ -93,7 +93,7 @@ public class ClickManager : MonoBehaviour
 		}
 
 		// Only grow an object if it still fits the screen, and if totalpoints < 100
-		if ((sphere.transform.localScale[1] < Camera.main.orthographicSize * 2))
+		if ((sphere.transform.localScale[1] < Camera.main.orthographicSize * 2) && (totalPoints < 100))
 		{
 			// Grow object by increment
 			sphere.transform.localScale += new Vector3(growthRate, growthRate, growthRate);
