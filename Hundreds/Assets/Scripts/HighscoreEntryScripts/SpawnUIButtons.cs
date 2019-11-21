@@ -13,9 +13,7 @@ public class SpawnUIButtons : MonoBehaviour
 	private RectTransform kbtrans;
 	char currentChar;
 
-	/* Spawn Keyboard text within the Designated Keyboard Canvas
-	 *
-	 */
+	/* Spawn Keyboard text within the Designated Keyboard Canvas */
     void Start()
     {
 		kbtrans = keyboard.GetComponent<RectTransform>();
@@ -29,6 +27,7 @@ public class SpawnUIButtons : MonoBehaviour
 
     }
 
+	// Create a row of n buttons with an offset from the center of the Canvas
 	void createButtonRow(int n, float Height) {
 		float kb_width = kbtrans.rect.width / 10;
 		float offset = kb_width/2;
@@ -51,19 +50,15 @@ public class SpawnUIButtons : MonoBehaviour
 			// Calculations for Offsets
 			c.transform.position += new Vector3(offset + kb_width * i, 0,0);
 
-
 			setButtonText(c);
 
 		}
 	}
 
 	void setButtonText(GameObject c) {
-			c.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>()
+			Button button = c.GetComponent<Button>();
+			button.GetComponentInChildren<TextMeshProUGUI>()
 				.text = (currentChar.ToString());
 			currentChar++;
 	}
-
-
-
-
 }
