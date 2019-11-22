@@ -32,15 +32,27 @@ public class SpawnUIButtons : MonoBehaviour
 					kbtrans.transform.position.y + (kbtrans.rect.height/2)
 				);
 
+
+		currentChar = 'A';
+		int remainder = 26;
+
+		int numOfRows = (int)System.Math.Ceiling( (double)26 / ButtonsPerRow);
+
 		// Number of rows + 1 for an offset
-		float horzOffset = ((kbtrans.rect.height) / 3);
+		float horzOffset = ((kbtrans.rect.height) / numOfRows);
 		// Static Offset to move all the Rows down by
 		horzStaticOffset = horzOffset/2;
 
-		currentChar = 'A';
-		createButtonRow(10, horzOffset*0);
-		createButtonRow(10, horzOffset*1);
-		createButtonRow(6, horzOffset * 2);
+		for (int i = 0; i < ButtonsPerRow; i++)
+		{
+			if (remainder < ButtonsPerRow) {
+				createButtonRow(remainder, horzOffset*i);
+				remainder = 0;
+			} else {
+				createButtonRow(ButtonsPerRow, horzOffset*i);
+				remainder -= ButtonsPerRow;
+			}
+		}
     }
 
 	// Create a row of n buttons, which shall be created at the given Height
