@@ -45,5 +45,17 @@ public class HighscoreName : MonoBehaviour
 		myName.text = new string(word);
 	}
 
+	// Function to handle submission of the name
+	public void SubmitName()
+	{
+		if (wordIndex != maxLength) {
+			Debug.Log("Not filled out");
+			return;
+		}
+
+		Debug.Log("Chosen Name: " + new string(word));
+
+	}
+
 }
 
