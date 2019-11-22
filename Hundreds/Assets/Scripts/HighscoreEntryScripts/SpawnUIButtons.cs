@@ -35,6 +35,8 @@ public class SpawnUIButtons : MonoBehaviour
 		createButtonRow(10, horzOffset*2);
 		createButtonRow(6, horzOffset * 3);
 
+		// Spawn the Confirm / Backspace Buttons
+
     }
 
 	// Create a row of n buttons, which shall be created at the given Height

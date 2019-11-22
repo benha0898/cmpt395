@@ -4,24 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// Responsible for adding Characters to the inputted name
 public class HighscoreName : MonoBehaviour
 {
-	string word = "";
-	int wordIndex = 0;
+	private int maxLength;
+	private char[] word;
+	private	int wordIndex;
+
 	public TextMeshProUGUI myName;
-	// Use this for initialization
 
 	void Start() {
-		myName.text = "_ _ _";
+		wordIndex = 0;
+		maxLength = 3;
+		word = new char[3]{'_', '_', '_'};
+
+		myName.text = new string(word);
 	}
 
-
-	public void alphabetFunction (string Input)
+	public void addCharacterToName(char i)
 	{
-		wordIndex++;
-		word = word + Input.ToString();
-		myName.text = word;
+		if (wordIndex == maxLength)
+			return;
 
+		word[wordIndex] = i;
+		wordIndex++;
+		myName.text = new string(word);
 	}
+
 }
 
