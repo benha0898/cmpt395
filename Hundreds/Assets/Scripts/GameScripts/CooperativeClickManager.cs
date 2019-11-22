@@ -36,17 +36,26 @@ public class CooperativeClickManager : MonoBehaviour
         // If totalPoints is 100, go to Win Menu
         if (totalPoints == 100)
             WLM.GetWinMenu();
-
-        Debug.Log("we living");
+        HashSet<GameObject> balls = GetInputCollisions();
         // Get All Collided gameobjects and apply function based on type
-        Debug.Log(CSP);
-        HashSet<GameObject>[] colourGroups = CSP.GroupColours(GetInputCollisions());
+        HashSet<GameObject>[] colourGroups = CSP.GroupColours(balls);
         foreach (HashSet<GameObject> colourGroup in colourGroups)
         {
             if (colourGroup.Count>=2){
                 foreach (GameObject entry in colourGroup)
                 {
                     growSphereObject(entry);
+                }
+            }
+            //Not enough objects are being touched for any to grow, so we check if the pause ball is growing
+            else
+            {
+                foreach (GameObject entry in balls)
+                {
+                    if (entry.name == "PauseButton(Clone)")
+                    {
+                        entry.GetComponent<GameplayPauseScript>().setClicked();
+                    }
                 }
             }
         }

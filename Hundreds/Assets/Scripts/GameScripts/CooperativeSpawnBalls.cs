@@ -64,6 +64,7 @@ public class CooperativeSpawnBalls : MonoBehaviour
             StartScript.SetMaximumVelocity(MaxBallVelocity);
         }
     }
+    //Assigns colours to the balls as they spawn
     private void assignColours(GameObject ball, int ballNum, int SpawnNumber)
     {
         //Color[] colours = new Color[4]{new Color(255f,0,0),new Color(0,255f,0),new Color(0,0,255f) };
@@ -77,6 +78,8 @@ public class CooperativeSpawnBalls : MonoBehaviour
             ball.GetComponent<Renderer>().material.color = colours[ballNum / GroupSize];
         }
     }
+    //Groups the balls passed to the function into hashsets based upon colours of the balls. Returns an array
+    //of the hashsets
     public HashSet<GameObject>[] GroupColours(HashSet<GameObject> balls)
     {
         int i=0;

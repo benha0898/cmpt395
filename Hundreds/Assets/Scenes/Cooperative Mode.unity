@@ -721,7 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 5078509960241209551, guid: fe8727a114147c6f8845eee116df224c,
     type: 3}
-  InitialSpawnNumber: 5
+  InitialSpawnNumber: 10
   SpawnCap: 10
   BaseVelocity: 5
   VelocityScaler: 0.5
@@ -731,7 +731,12 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0.30588236, g: 0.5294118, b: 0.7372549, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.32156864, g: 1, b: 1, a: 1}
+  - {r: 0.9056604, g: 0.21787111, b: 0.80078256, a: 1}
+  - {r: 0.5075203, g: 0.47592562, b: 0.8773585, a: 1}
+  - {r: 1, g: 0.69109386, b: 0.3215686, a: 1}
+  - {r: 0.928721, g: 1, b: 0.3215686, a: 1}
+  - {r: 0.5365279, g: 0.18111429, b: 0.6981132, a: 1}
+  - {r: 0.24363652, g: 0.7075472, b: 0.34086633, a: 1}
 --- !u!4 &1235189269
 Transform:
   m_ObjectHideFlags: 0
