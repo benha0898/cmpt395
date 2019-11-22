@@ -721,7 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 5078509960241209551, guid: fe8727a114147c6f8845eee116df224c,
     type: 3}
-  InitialSpawnNumber: 10
+  InitialSpawnNumber: 4
   SpawnCap: 10
   BaseVelocity: 5
   VelocityScaler: 0.5

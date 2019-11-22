@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
 {
 	private static bool	GamePaused = false;
 	private static int 	GameLevel = 1;
+    public string SceneName;
 
     // Start is called before the first frame update
     void Start()
