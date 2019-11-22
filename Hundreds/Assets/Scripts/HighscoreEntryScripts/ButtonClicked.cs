@@ -20,13 +20,15 @@ public class ButtonClicked : MonoBehaviour
 
 	// When the button is clicked, send the button's character to the initials
 	// for it to be added
-	void clickedButton() {
+	void clickedButton()
+	{
 		// Get the Character from the Button Text
 		char t = btnText.text.ToCharArray()[0];
 
-		GameObject highScore = GameObject.Find("HighscoreCanvas");
-		highScore.GetComponent<HighscoreName>().addCharacterToName(t);
+		HighscoreName hsScript = GameObject.Find("HighscoreCanvas")
+			.GetComponent<HighscoreName>();
 
+		hsScript.addCharacterToName(t);
 	}
 
 }
