@@ -9,9 +9,12 @@ public class SpawnUIButtons : MonoBehaviour
 {
 	public GameObject ButtonPrefab;
 	public Canvas keyboard;
+	public int ButtonsPerRow;
 
 	private RectTransform kbtrans;
-	char currentChar;
+	private char currentChar;
+	// Upper Lefthand Coordinates of the Canvas. Shall be used as the reference
+	private Vector2 CanvasOrigin;
 
 	/* Spawn Keyboard text within the Designated Keyboard Canvas */
     void Start()
@@ -19,42 +22,44 @@ public class SpawnUIButtons : MonoBehaviour
 		kbtrans = keyboard.GetComponent<RectTransform>();
 		currentChar = 'A';
 
-		float offset = (kbtrans.rect.height/2) / 3;
+		// Compute the Upper Lefthand Corner Vector
+		CanvasOrigin = new Vector2(
+					kbtrans.transform.position.x - (kbtrans.rect.width/2),
+					kbtrans.transform.position.y + (kbtrans.rect.height/2)
+				);
 
-		createButtonRow(10, 0);
-		createButtonRow(10, offset);
-		createButtonRow(6, offset * 2);
+		// Number of rows + 1 for an offset
+		float horzOffset = ((kbtrans.rect.height) / 4);
+
+		createButtonRow(10, horzOffset);
+		createButtonRow(10, horzOffset*2);
+		createButtonRow(6, horzOffset * 3);
 
     }
 
-	// Create a row of n buttons with an offset from the center of the Canvas
+	// Create a row of n buttons, which shall be created at the given Height
 	void createButtonRow(int n, float Height) {
-		float kb_width = kbtrans.rect.width / 10;
-		float offset = kb_width/2;
-
-		offset += (kb_width * (10-n))/2;
-
+		float kb_width = kbtrans.rect.width / ButtonsPerRow;
+		float leftOverSpacing = kb_width * (ButtonsPerRow - n);
+		float vertOffset = (leftOverSpacing + kb_width) / 2;
 
 		for (int i = 0; i < n; i++) {
-			// Initialize at the Bottom Left of the parent
-			// Canvas
 			Vector3 Position = new Vector3(
-					kbtrans.transform.position.x - (kbtrans.rect.width/2),
-					kbtrans.transform.position.y - Height,
+					CanvasOrigin.x,
+					CanvasOrigin.y - Height,
 					0);
-
 			GameObject c = Instantiate(ButtonPrefab, Position,
 					Quaternion.identity) as GameObject;
+
 			c.transform.SetParent(kbtrans.transform);
 
 			// Calculations for Offsets
-			c.transform.position += new Vector3(offset + kb_width * i, 0,0);
-
+			c.transform.position += new Vector3(vertOffset + kb_width * i, 0,0);
 			setButtonText(c);
-
 		}
 	}
 
+	// Helper function to obtain the set the Text on a Button Object
 	void setButtonText(GameObject c) {
 			Button button = c.GetComponent<Button>();
 			button.GetComponentInChildren<TextMeshProUGUI>()
