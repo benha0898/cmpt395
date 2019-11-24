@@ -694,6 +694,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: {fileID: 2095489054}
+  ConfirmButton: {fileID: 1054213819}
+  BackspaceButton: {fileID: 548220946}
 --- !u!1 &488115351
 GameObject:
   m_ObjectHideFlags: 0
