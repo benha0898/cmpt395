@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cooperative Mode.unity
     guid: 009959b667ddf024f96d30c3d72f21bf
+  - enabled: 1
+    path: Assets/Scenes/HighScoreEntry.unity
+    guid: 8797e4e4121f7d1f6887d970651953ae
   m_configObjects: {}
