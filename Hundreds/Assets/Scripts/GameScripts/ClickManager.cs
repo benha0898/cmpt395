@@ -41,6 +41,10 @@ public class ClickManager : MonoBehaviour
 		{
 			if (entry.name == "Sphere(Clone)")
 				growSphereObject(entry);
+			else if (entry.name == "PauseButton(Clone)") {
+				entry.GetComponent<GameplayPauseScript>().setClicked();
+			}
+
 		}
 	}
 

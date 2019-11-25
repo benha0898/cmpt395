@@ -53,7 +53,6 @@ public class SpawnBalls : MonoBehaviour
 		// Instantiate SpawnNumber of Ball Prefabs in the Scene
 		for (int i = 0; i < SpawnNumber; i++) {
 			GameObject c = Instantiate(BallPrefab, getRandomPoint(), Quaternion.identity) as GameObject;
-
 			// Change Object options based upon the level
 			var StartScript = c.GetComponent<SphereObject>();
 			StartScript.SetMaximumVelocity(MaxBallVelocity);

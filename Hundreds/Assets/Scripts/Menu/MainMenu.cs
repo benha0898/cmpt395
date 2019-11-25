@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    
     public void LoadCountdown()
     {
+        Debug.Log(this.gameObject.name);
         SceneManager.LoadScene("Countdown");
     }
 
     public void PlaySinglePayer()
     {
-        SceneManager.LoadScene("Endless Mode");
+        GameObject.Find("gameManager").GetComponent<GameManager>().SceneName = "Endless Mode";
+        SceneManager.LoadScene("Countdown");
     }
 
     public void PlayMultiPayer()
     {
-        SceneManager.LoadScene("Cooperative Mode");
+        GameObject.Find("gameManager").GetComponent<GameManager>().SceneName = "Cooperative Mode";
+        SceneManager.LoadScene("Countdown");
     }
 
     public void LoadHighscores()

@@ -37,7 +37,7 @@ public class PauseManager : MonoBehaviour
 		// Reset can only be done from Pause screen, which is paused
 		GameManager.TogglePause();
 
-        SceneManager.LoadScene("Endless Mode");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
