@@ -16,7 +16,7 @@ public class CooperativeSpawnBalls : MonoBehaviour
     [Tooltip("Rate Scaler for the Velocity of Objects to change each level")]
     public float VelocityScaler;
     public int GroupSize;
-    [Tooltip("number of balls of the same colour")]
+    [Tooltip("minimum number of balls of the same colour")]
     private Camera cam;
     public Color[] colours;
 

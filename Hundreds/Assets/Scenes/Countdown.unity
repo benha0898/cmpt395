@@ -223,7 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6157dac53ece9a3998bfd54fb69d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: 
 --- !u!4 &150628366
 Transform:
   m_ObjectHideFlags: 0
@@ -874,3 +873,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 3
+  GM: {fileID: 150628365}

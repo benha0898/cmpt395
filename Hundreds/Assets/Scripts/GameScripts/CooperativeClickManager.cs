@@ -34,8 +34,6 @@ public class CooperativeClickManager : MonoBehaviour
             return;
 
         // If totalPoints is 100, go to Win Menu
-        if (totalPoints == 100)
-            WLM.GetWinMenu();
         HashSet<GameObject> balls = GetInputCollisions();
         // Get All Collided gameobjects and apply function based on type
         HashSet<GameObject>[] colourGroups = CSP.GroupColours(balls);
@@ -58,6 +56,8 @@ public class CooperativeClickManager : MonoBehaviour
                     }
                 }
             }
+            if (totalPoints == 100)
+                WLM.GetWinMenu();
         }
         //foreach (GameObject entry in GetInputCollisions())
         //{
