@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
 {
 	private static bool	GamePaused = false;
 	private static int 	GameLevel = 1;
+    private static int finalScore = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,17 @@ public class GameManager : Singleton<GameManager>
 	// Reset Game Level to 1
 	public static void ResetGameLevel() { GameLevel = 1; }
 
-	/*		 Pause Functionality		*/
+    public static int GetFinalScore() { return finalScore; }
 
-	// Return Game Paused boolean
-	public static bool isGamePaused() { return GamePaused; }
+    public static void SetFinalScore(int newFinalScore)
+    {
+        finalScore = newFinalScore;
+    }
+
+    /*		 Pause Functionality		*/
+
+    // Return Game Paused boolean
+    public static bool isGamePaused() { return GamePaused; }
 
 	// Toggle Pause in the game, and set variables
 	// Return New Pause state
