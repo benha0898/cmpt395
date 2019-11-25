@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 // Responsible for adding Characters to the inputted name
 public class HighscoreName : MonoBehaviour
 {
 	public TextMeshProUGUI myName;
+	public TextMeshProUGUI finalScoreText;
 	public Button ConfirmButton;
 	public Button BackspaceButton;
 	public GameObject DatabaseManager;
@@ -16,8 +18,7 @@ public class HighscoreName : MonoBehaviour
 	private int maxLength;
 	private char[] word;
 	private	int wordIndex;
-
-	private int score;
+	private int finalScore;
 
 	/* List of Bad Words to be compared against
 	 * Source: https://github.com/klhurley/ElementalEngine2/
@@ -44,13 +45,10 @@ public class HighscoreName : MonoBehaviour
 
 	void Start() {
 		ResetName();
-	}
+		finalScore = GameManager.GetFinalScore();
 
-	void OnEnable()
-	{
-		score = PlayerPrefs.GetInt("score");
-		GameObject scoreText = GameObject.Find("Score");
-		scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+		finalScoreText.text = "Score: " + finalScore.ToString();
+
 	}
 
 	public void ResetName()
@@ -92,14 +90,16 @@ public class HighscoreName : MonoBehaviour
 		wordIndex--;
 
 		BackspaceButton.interactable = (wordIndex != 0);
+		ConfirmButton.interactable = (wordIndex == 3);
 		myName.text = new string(word);
 	}
 
 	// Function to handle submission of the name
 	public void SubmitName()
 	{
-		Debug.Log("Chosen Name: " + new string(word));
-		DatabaseManager.GetComponent<DatabaseManager>().InsertEndless(new string(word), score);
+		Debug.Log((myName.text) + " " +finalScore.ToString());
+		DatabaseManager.GetComponent<DatabaseManager>().InsertEndless(new string(word), finalScore);
+    SceneManager.LoadScene("Main Menu");
 	}
 
 	// Determines if the specified Initials are considered to inapproprite
