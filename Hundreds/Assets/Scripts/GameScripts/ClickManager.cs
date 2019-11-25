@@ -23,6 +23,7 @@ public class ClickManager : MonoBehaviour
 		TotalPoints.GetComponent<TextMeshPro>().text = "0";
 		totalPoints = 0;
 
+
 	}
 
 	// Update is called once per frame

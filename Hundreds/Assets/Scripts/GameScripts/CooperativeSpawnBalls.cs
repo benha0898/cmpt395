@@ -24,10 +24,18 @@ public class CooperativeSpawnBalls : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        if (GameManager.getDifficulty() == "expert")
+        {
+            InitialSpawnNumber += 3;
+            SpawnCap += 6;
+            BaseVelocity += 1;
+            VelocityScaler += 0.25f;
+        }
         spawnObjects();
 
         if (GameManager.isGamePaused())
             GameManager.TogglePause();
+
     }
 
     // Return a random Vector2 that is within 0.05f of the edges of the screen.
