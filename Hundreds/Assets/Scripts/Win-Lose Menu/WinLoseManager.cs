@@ -51,4 +51,10 @@ public class WinLoseManager : MonoBehaviour
         GameManager.IncrementLevel();
         SceneManager.LoadScene("Countdown");
     }
+
+    public void LoadScoreEntry()
+    {
+        GameManager.TogglePause();
+        SceneManager.LoadScene("HighScoreEntry");
+    }
 }
