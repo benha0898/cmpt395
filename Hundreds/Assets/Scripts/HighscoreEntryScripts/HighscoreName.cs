@@ -9,12 +9,14 @@ using System;
 public class HighscoreName : MonoBehaviour
 {
 	public TextMeshProUGUI myName;
+	public TextMeshProUGUI finalScoreText;
 	public Button ConfirmButton;
 	public Button BackspaceButton;
 
 	private int maxLength;
 	private char[] word;
 	private	int wordIndex;
+	private int finalScore;
 
 	/* List of Bad Words to be compared against
 	 * Source: https://github.com/klhurley/ElementalEngine2/
@@ -41,6 +43,10 @@ public class HighscoreName : MonoBehaviour
 
 	void Start() {
 		ResetName();
+		finalScore = GameManager.GetFinalScore();
+
+		finalScoreText.text = "Score: " + finalScore.ToString();
+
 	}
 
 	public void ResetName()
@@ -82,13 +88,19 @@ public class HighscoreName : MonoBehaviour
 		wordIndex--;
 
 		BackspaceButton.interactable = (wordIndex != 0);
+		ConfirmButton.interactable = (wordIndex == 3);
 		myName.text = new string(word);
 	}
 
 	// Function to handle submission of the name
 	public void SubmitName()
 	{
-		Debug.Log("Chosen Name: " + new string(word));
+		DateTime today = DateTime.Now;
+
+
+		Debug.Log((myName.text) + " " +
+				finalScore.ToString() + " " +
+				today.ToString("D"));
 	}
 
 	// Determines if the specified Initials are considered to inapproprite

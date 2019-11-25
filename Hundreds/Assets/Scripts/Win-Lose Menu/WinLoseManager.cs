@@ -8,24 +8,12 @@ public class WinLoseManager : MonoBehaviour
     public GameObject WinMenu;
     public GameObject LoseMenu;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GetWinMenu()
     {
         GameManager.TogglePause();
         GameObject menu = Instantiate(WinMenu, this.transform.position, Quaternion.identity, this.transform);
     }
-    
+
     public void GetLoseMenu()
     {
         GameManager.TogglePause();
@@ -35,7 +23,11 @@ public class WinLoseManager : MonoBehaviour
     public void LoadMainMenu()
     {
 		GameManager.TogglePause();
-        SceneManager.LoadScene("Main Menu");
+
+		// When the player selects the Main Menu, allow them to enter their
+		// highscore after Winning/Losing
+
+        SceneManager.LoadScene("HighScoreEntry");
     }
 
     public void RestartLevel()
