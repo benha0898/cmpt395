@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 // Responsible for adding Characters to the inputted name
 public class HighscoreName : MonoBehaviour
@@ -101,6 +102,9 @@ public class HighscoreName : MonoBehaviour
 		Debug.Log((myName.text) + " " +
 				finalScore.ToString() + " " +
 				today.ToString("D"));
+
+
+        SceneManager.LoadScene("Main Menu");
 	}
 
 	// Determines if the specified Initials are considered to inapproprite
