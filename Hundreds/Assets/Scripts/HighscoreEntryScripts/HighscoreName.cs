@@ -13,6 +13,7 @@ public class HighscoreName : MonoBehaviour
 	public TextMeshProUGUI finalScoreText;
 	public Button ConfirmButton;
 	public Button BackspaceButton;
+	public GameObject DatabaseManager;
 
 	private int maxLength;
 	private char[] word;
@@ -96,15 +97,9 @@ public class HighscoreName : MonoBehaviour
 	// Function to handle submission of the name
 	public void SubmitName()
 	{
-		DateTime today = DateTime.Now;
-
-
-		Debug.Log((myName.text) + " " +
-				finalScore.ToString() + " " +
-				today.ToString("D"));
-
-
-        SceneManager.LoadScene("Main Menu");
+		Debug.Log((myName.text) + " " +finalScore.ToString());
+		DatabaseManager.GetComponent<DatabaseManager>().InsertEndless(new string(word), finalScore);
+    SceneManager.LoadScene("Main Menu");
 	}
 
 	// Determines if the specified Initials are considered to inapproprite

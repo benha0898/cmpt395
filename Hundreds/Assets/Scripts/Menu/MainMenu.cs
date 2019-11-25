@@ -24,4 +24,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Countdown");
     }
 
+    public void LoadHighscores()
+    {
+        SceneManager.LoadScene("Scores");
+    }
+
 }

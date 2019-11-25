@@ -49,4 +49,10 @@ public class FinalScoreScript : MonoBehaviour
         Debug.Log(Final_Score_Text);
 
     }
+
+    void OnDisable()
+    {
+        PlayerPrefs.SetInt("score", finalScore);
+    }
+
 }
