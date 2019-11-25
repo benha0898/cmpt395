@@ -30,7 +30,7 @@ public class Countdown_Script : MonoBehaviour
         // When the timer reaches 0, switch to endless mode 
         if (countdownTime <= 0)
         {
-            SceneManager.LoadScene("Endless Mode");
+            SceneManager.LoadScene(GameObject.Find("gameManager").GetComponent<GameManager>().SceneName);
         }
 
         countdownTime -= Time.deltaTime;
