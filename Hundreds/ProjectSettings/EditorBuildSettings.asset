@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Countdown.unity
     guid: 8e5323eece12c5642891fe21fb53ce7f
+  - enabled: 1
+    path: Assets/Scenes/Scores.unity
+    guid: 3f408fdbddabcb34f862e03fdde60346
   m_configObjects: {}
