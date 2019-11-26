@@ -27,16 +27,38 @@ public class DatabaseManager : MonoBehaviour
 
 		// Create table
 		command.CommandText =
-            @"CREATE TABLE IF NOT EXISTS highscores_endless (
+            @"DROP TABLE IF EXISTS highscores_endless;
+            CREATE TABLE IF NOT EXISTS highscores_endless (
                 id INTEGER PRIMARY KEY,
                 name TEXT(3),
                 score INT,
                 timestamp DATE DEFAULT (datetime('now','localtime')));
+            DROP TABLE IF EXISTS highscores_coop;
             CREATE TABLE IF NOT EXISTS highscores_coop (
                 id INTEGER PRIMARY KEY,
                 name TEXT(3),
                 score INT,
-                timestamp DATE DEFAULT (datetime('now','localtime')));";
+                timestamp DATE DEFAULT (datetime('now','localtime')));
+            INSERT INTO highscores_endless (name, score) VALUES ('AAA', 41);
+            INSERT INTO highscores_endless (name, score) VALUES ('AAB', 875);
+            INSERT INTO highscores_endless (name, score) VALUES ('AFA', 975);
+            INSERT INTO highscores_endless (name, score) VALUES ('HAA', 12);
+            INSERT INTO highscores_endless (name, score) VALUES ('APA', 981);
+            INSERT INTO highscores_endless (name, score) VALUES ('OQE', 100);
+            INSERT INTO highscores_endless (name, score) VALUES ('FAW', 9);
+            INSERT INTO highscores_endless (name, score) VALUES ('VMD', 13);
+            INSERT INTO highscores_endless (name, score) VALUES ('VZQ', 71);
+            INSERT INTO highscores_coop (name, score) VALUES ('POY', 14);
+            INSERT INTO highscores_coop (name, score) VALUES ('PVD', 429);
+            INSERT INTO highscores_coop (name, score) VALUES ('MFZ', 138);
+            INSERT INTO highscores_coop (name, score) VALUES ('QQP', 86);
+            INSERT INTO highscores_coop (name, score) VALUES ('ZZZ', 129);
+            INSERT INTO highscores_coop (name, score) VALUES ('LPR', 91);
+            INSERT INTO highscores_coop (name, score) VALUES ('UEI', 651);
+            INSERT INTO highscores_coop (name, score) VALUES ('ALR', 47);
+            INSERT INTO highscores_coop (name, score) VALUES ('BNI', 222);
+            ";
+            
 		command.ExecuteNonQuery();
         command.CommandText = ""; // Clear command
 
