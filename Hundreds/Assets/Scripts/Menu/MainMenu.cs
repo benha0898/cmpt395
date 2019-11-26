@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameManager GM;
-    
     public void LoadCountdown()
     {
         Debug.Log(this.gameObject.name);
@@ -15,13 +13,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlaySinglePayer()
     {
-        GM.setCurrentGameScene("Endless Mode");
+        GameManager.setCurrentGameScene("Endless Mode");
         SceneManager.LoadScene("Countdown");
     }
 
     public void PlayMultiPayer()
     {
-        GM.setCurrentGameScene("Cooperative Mode");
+        GameManager.setCurrentGameScene("Cooperative Mode");
         SceneManager.LoadScene("Countdown");
     }
 
@@ -29,6 +27,4 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Scores");
     }
-
-
 }

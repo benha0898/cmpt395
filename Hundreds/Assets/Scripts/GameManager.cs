@@ -54,25 +54,30 @@ public class GameManager : Singleton<GameManager>
 
 		return isGamePaused();
 	}
-    public string getCurrentGameScene()
+
+	/*		Difficulty Functionality	*/
+
+    public static string getCurrentGameScene()
     {
         return SceneName;
     }
 
-    public void setCurrentGameScene(string newScene) 
+    public static void setCurrentGameScene(string newScene)
     {
         SceneName = newScene;
     }
 
-    public void setDifficultyEasy()
+    public static void setDifficultyEasy()
     {
         difficulty = "easy";
     }
-    public void setDifficultyExpert()
+
+    public static void setDifficultyExpert()
     {
         difficulty = "expert";
         Debug.Log(getDifficulty());
     }
+
     public static string getDifficulty()
     {
         return difficulty;
