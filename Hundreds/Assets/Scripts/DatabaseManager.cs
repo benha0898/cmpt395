@@ -39,6 +39,7 @@ public class DatabaseManager : MonoBehaviour
                 timestamp DATE DEFAULT (datetime('now','localtime')));";
 		command.ExecuteNonQuery();
         command.CommandText = ""; // Clear command
+
     }
 
     public void InsertEndless(string name, int score)
@@ -65,6 +66,26 @@ public class DatabaseManager : MonoBehaviour
     {
         command.CommandText = 
             @"SELECT * FROM highscores_endless
+            ORDER BY score DESC
+            LIMIT 10;";
+        reader = command.ExecuteReader();
+        List<HighscoreEntry> highscoreList = new List<HighscoreEntry>();
+        while (reader.Read())
+        {
+            HighscoreEntry entry = new HighscoreEntry(System.Convert.ToInt32(reader[2]), reader[1].ToString());
+            highscoreList.Add(entry);
+        }
+
+        reader.Close();
+        command.CommandText = "";
+
+        return highscoreList;
+    }
+
+    public List<HighscoreEntry> GetCoop()
+    {
+        command.CommandText = 
+            @"SELECT * FROM highscores_coop
             ORDER BY score DESC
             LIMIT 10;";
         reader = command.ExecuteReader();

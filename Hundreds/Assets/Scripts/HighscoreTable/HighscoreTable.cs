@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HighscoreTable : MonoBehaviour
@@ -11,12 +12,50 @@ public class HighscoreTable : MonoBehaviour
     private List<HighscoreEntry> highscoreEntryList;
     private List<Transform> highscoreEntryTransformList;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject endlessSwitch, coopSwitch;
+    public GameObject endlessView, coopView;
+
+    private void Start() {
+        LoadEndlessView();
+        LoadCoopView();
+    }
+    
+    public void OnChangeValue() {
+        bool isEndless = GameObject.Find("Toggle").GetComponent<Toggle>().isOn;
+        if (isEndless)
+        {
+            Debug.Log("Endless List");
+            endlessSwitch.SetActive(true);
+            endlessView.SetActive(true);
+            coopSwitch.SetActive(false);
+            coopView.SetActive(false);
+        } else
+        {
+            Debug.Log("Cooperative List");
+            endlessSwitch.SetActive(false);
+            endlessView.SetActive(false);
+            coopSwitch.SetActive(true);
+            coopView.SetActive(true);
+        }
+    }
+
+    private void LoadEndlessView()
     {
-        entryContainer = transform.Find("Scroll View/Viewport/Content/EntryContainer");
+        entryContainer = transform.Find("EndlessView/Viewport/Content");
 
         highscoreEntryList = DatabaseManager.GetComponent<DatabaseManager>().GetEndless();
+
+        highscoreEntryTransformList = new List<Transform>();
+        foreach (HighscoreEntry highscoreEntry in highscoreEntryList) {
+            CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
+        }
+    }
+
+    private void LoadCoopView()
+    {
+        entryContainer = transform.Find("CoopView/Viewport/Content");
+
+        highscoreEntryList = DatabaseManager.GetComponent<DatabaseManager>().GetCoop();
 
         highscoreEntryTransformList = new List<Transform>();
         foreach (HighscoreEntry highscoreEntry in highscoreEntryList) {
@@ -49,13 +88,4 @@ public class HighscoreTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
-    /*
-
-    private class HighscoreEntry
-    {
-        public int score;
-        public string name;
-    }
-
-    */
 }
