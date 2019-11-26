@@ -33,4 +33,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    public void ButtonDifficultyEasy()
+    {
+        GameManager.setDifficultyEasy();
+    }
+    
+    public void ButtonDifficultyHard()
+    {
+        GameManager.setDifficultyExpert();
+    }
 }
