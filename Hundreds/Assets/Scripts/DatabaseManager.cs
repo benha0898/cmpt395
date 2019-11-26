@@ -39,28 +39,6 @@ public class DatabaseManager : MonoBehaviour
                 timestamp DATE DEFAULT (datetime('now','localtime')));";
 		command.ExecuteNonQuery();
         command.CommandText = ""; // Clear command
-
-		// Read and print all values in table
-		command.CommandText = "SELECT * FROM highscores_endless;";
-		reader = command.ExecuteReader();
-		while (reader.Read())
-		{
-			Debug.Log("id: " + reader[0].ToString()
-                + ", name: " + reader[1].ToString()
-                + ", score: " + reader[2].ToString()
-                + ", date: " + reader[3].ToString());
-		}
-        reader.Close();
-        command.CommandText = "";
-
-        command.CommandText = "SELECT date('now', 'localtime');";
-        reader = command.ExecuteReader();
-        while (reader.Read())
-		{
-			Debug.Log(reader[0].ToString());
-        }
-        reader.Close();
-        command.CommandText = "";
     }
 
     public void InsertEndless(string name, int score)
@@ -81,6 +59,26 @@ public class DatabaseManager : MonoBehaviour
         Debug.Log(command.CommandText);
         command.ExecuteNonQuery();
         command.CommandText = "";
+    }
+
+    public List<HighscoreEntry> GetEndless()
+    {
+        command.CommandText = 
+            @"SELECT * FROM highscores_endless
+            ORDER BY score DESC
+            LIMIT 10;";
+        reader = command.ExecuteReader();
+        List<HighscoreEntry> highscoreList = new List<HighscoreEntry>();
+        while (reader.Read())
+        {
+            HighscoreEntry entry = new HighscoreEntry(System.Convert.ToInt32(reader[2]), reader[1].ToString());
+            highscoreList.Add(entry);
+        }
+
+        reader.Close();
+        command.CommandText = "";
+
+        return highscoreList;
     }
 
     void OnDisable()

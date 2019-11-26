@@ -99,7 +99,7 @@ public class HighscoreName : MonoBehaviour
 	{
 		Debug.Log((myName.text) + " " +finalScore.ToString());
 		DatabaseManager.GetComponent<DatabaseManager>().InsertEndless(new string(word), finalScore);
-    SceneManager.LoadScene("Main Menu");
+    	SceneManager.LoadScene("Main Menu");
 	}
 
 	// Determines if the specified Initials are considered to inapproprite
