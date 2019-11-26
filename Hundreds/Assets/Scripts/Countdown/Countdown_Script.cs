@@ -9,6 +9,7 @@ public class Countdown_Script : MonoBehaviour
 
     public float countdownTime;
     private TextMeshPro countdownText;
+    public GameManager GM;
 
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class Countdown_Script : MonoBehaviour
         // When the timer reaches 0, switch to endless mode 
         if (countdownTime <= 0)
         {
-            SceneManager.LoadScene(GameObject.Find("gameManager").GetComponent<GameManager>().SceneName);
+            SceneManager.LoadScene(GM.getCurrentGameScene());
         }
 
         countdownTime -= Time.deltaTime;
