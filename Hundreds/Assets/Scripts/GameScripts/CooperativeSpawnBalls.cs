@@ -16,7 +16,7 @@ public class CooperativeSpawnBalls : MonoBehaviour
     [Tooltip("Rate Scaler for the Velocity of Objects to change each level")]
     public float VelocityScaler;
     public int GroupSize;
-    [Tooltip("number of balls of the same colour")]
+    [Tooltip("minimum number of balls of the same colour")]
     private Camera cam;
     public Color[] colours;
 
@@ -24,10 +24,18 @@ public class CooperativeSpawnBalls : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        if (GameManager.getDifficulty() == "expert")
+        {
+            InitialSpawnNumber += 3;
+            SpawnCap += 6;
+            BaseVelocity += 1;
+            VelocityScaler += 0.25f;
+        }
         spawnObjects();
 
         if (GameManager.isGamePaused())
             GameManager.TogglePause();
+
     }
 
     // Return a random Vector2 that is within 0.05f of the edges of the screen.

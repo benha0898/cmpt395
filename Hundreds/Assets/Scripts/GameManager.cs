@@ -9,8 +9,9 @@ public class GameManager : Singleton<GameManager>
 {
 	private static bool	GamePaused = false;
 	private static int 	GameLevel = 1;
-    public string SceneName;
+    public static string SceneName;
     private static int finalScore = 0;
+    private static string difficulty = "easy";
 
     // Start is called before the first frame update
     void Start()
@@ -54,4 +55,31 @@ public class GameManager : Singleton<GameManager>
 		return isGamePaused();
 	}
 
+	/*		Difficulty Functionality	*/
+
+    public static string getCurrentGameScene()
+    {
+        return SceneName;
+    }
+
+    public static void setCurrentGameScene(string newScene)
+    {
+        SceneName = newScene;
+    }
+
+    public static void setDifficultyEasy()
+    {
+        difficulty = "easy";
+    }
+
+    public static void setDifficultyExpert()
+    {
+        difficulty = "expert";
+        Debug.Log(getDifficulty());
+    }
+
+    public static string getDifficulty()
+    {
+        return difficulty;
+    }
 }

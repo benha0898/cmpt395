@@ -23,6 +23,7 @@ public class ClickManager : MonoBehaviour
 		TotalPoints.GetComponent<TextMeshPro>().text = "0";
 		totalPoints = 0;
 
+
 	}
 
 	// Update is called once per frame
@@ -33,8 +34,6 @@ public class ClickManager : MonoBehaviour
 			return;
 
 		// If totalPoints is 100, go to Win Menu
-		if (totalPoints == 100)
-			WLM.GetWinMenu();
 
 		// Get All Collided gameobjects and apply function based on type
 		foreach (GameObject entry in GetInputCollisions())
@@ -46,7 +45,9 @@ public class ClickManager : MonoBehaviour
 			}
 
 		}
-	}
+        if (totalPoints == 100)
+            WLM.GetWinMenu();
+    }
 
 	// Handles both the Mouse and Touch Inputs upon objects, and returns all
 	// objects in a HashSet
