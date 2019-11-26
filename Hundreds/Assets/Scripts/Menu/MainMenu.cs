@@ -28,4 +28,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Scores");
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
 }
