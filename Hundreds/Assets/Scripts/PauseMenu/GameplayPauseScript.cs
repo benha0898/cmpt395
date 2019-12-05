@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /* Gameplay will be paused after a PauseButton object is help for a specific
  * amount of time.
@@ -11,12 +12,17 @@ public class GameplayPauseScript : MonoBehaviour
 	private bool isClicked, lastFrameClicked;
 	private PauseManager pauseManager;
 	private float PauseDelay;
+	private GameObject Bounds;
+	private float incSize;
+	private GameObject pauseText;
 
 	void Start()
 	{
 		clickedTime = 0f;
 		isClicked = false;
 		lastFrameClicked = false;
+
+		incSize = Time.deltaTime / 4;
 	}
 
 	// While enabled, count how long the pause button has been pressed.
@@ -33,12 +39,18 @@ public class GameplayPauseScript : MonoBehaviour
 			return;
 		}
 
+		Bounds.SetActive(true);
+		pauseText.SetActive(true);
+
+		pauseText.GetComponent<TextMeshPro>().text = "Pausing in " + ( PauseDelay - clickedTime + 1).ToString("0");
 
 		clickedTime += Time.deltaTime;
-		gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0);
+		gameObject.transform.localScale += new Vector3(incSize, incSize, 0);
 
 		if (clickedTime >= PauseDelay) {
+			pauseText.SetActive(false);
 			pauseManager.TogglePauseMenu();
+			Debug.Log(gameObject.transform.localScale);
 		}
 
 		lastFrameClicked = true;
@@ -51,7 +63,9 @@ public class GameplayPauseScript : MonoBehaviour
 	// Reset default
 	void reset()
 	{
+		Bounds.SetActive(false);
 		gameObject.transform.localScale = new Vector3(1,1,0);
+		pauseText.SetActive(false);
 		clickedTime = 0f;
 	}
 
@@ -60,4 +74,12 @@ public class GameplayPauseScript : MonoBehaviour
 
 	// Set the delay before the game is paused
 	public void SetPauseDelay(float delay) { PauseDelay = delay; }
+
+	public void SetBoundObj(GameObject n) { Bounds = n;
+		Bounds.transform.localScale += new Vector3(1f, 1f, 0);
+	}
+
+	public void SetPauseText(GameObject PauseText) {
+		pauseText = PauseText;
+	}
 }
