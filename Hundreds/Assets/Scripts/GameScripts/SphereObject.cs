@@ -16,18 +16,19 @@ public class SphereObject : MonoBehaviour
 	private GameObject points;
 	private float minSize;
 
+	private AudioSource collisionSound;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		rb = this.GetComponent<Rigidbody2D>();
 		collided = false;
-
 		// Randomize Mass
 		rb.mass = Random.Range(2.0f, MaxMass);
-
 		// Randomize Velocity
 		StartVelocity();
 
+        collisionSound = this.GetComponent<AudioSource>();
 		// Set starting size relative to screen size
 		minSize = Camera.main.orthographicSize * 2 / 10; // Starting size = 1/10 screen height
 		this.transform.localScale = new Vector3(minSize, minSize, minSize);
@@ -85,6 +86,9 @@ public class SphereObject : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D other) {
 		collided = true;
+		// Ensure Collision sound is set
+		if (collisionSound)
+			collisionSound.Play();
 	}
 	private void OnCollisionExit2D(Collision2D other) {
 		collided = false;
