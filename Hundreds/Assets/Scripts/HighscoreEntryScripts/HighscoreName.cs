@@ -99,6 +99,7 @@ public class HighscoreName : MonoBehaviour
 	{
 		Debug.Log((myName.text) + " " +finalScore.ToString());
 		DatabaseManager.GetComponent<DatabaseManager>().InsertEndless(new string(word), finalScore);
+		GameManager.ResetGameLevel();
     	SceneManager.LoadScene("Main Menu");
 	}
 

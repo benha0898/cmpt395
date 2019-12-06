@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
 	// Increment the Game Level
 	public static void IncrementLevel() { GameLevel += 1; }
 	// Reset Game Level to 1
-	public static void ResetGameLevel() { GameLevel = 1; }
+	public static void ResetGameLevel() { GameLevel = 1; finalScore = 0; }
 
     public static int GetFinalScore() { return finalScore; }
 

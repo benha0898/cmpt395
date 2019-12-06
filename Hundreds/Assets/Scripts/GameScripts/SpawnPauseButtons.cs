@@ -8,6 +8,8 @@ public class SpawnPauseButtons : MonoBehaviour
 {
 	private Camera cam;
 	public GameObject PauseButtonPrefab;
+	public GameObject BoundsPrefab;
+	public GameObject PauseText;
 	public float PauseDelay;
 	public PauseManager PauseManager;
 
@@ -15,6 +17,7 @@ public class SpawnPauseButtons : MonoBehaviour
     void Start()
     {
 		cam = Camera.main;
+		PauseText.SetActive(false);
 
 		// Spawn Buttons on each sides of the screen
 		for (int i = 0; i < 2; i++) {
@@ -26,6 +29,16 @@ public class SpawnPauseButtons : MonoBehaviour
 				GameplayPauseScript gps = n.GetComponent<GameplayPauseScript>();
 				gps.SetPauseDelay(PauseDelay);
 				gps.SetPauseManager(PauseManager);
+
+				GameObject boundsPause = Instantiate(BoundsPrefab,
+						cam.ViewportToWorldPoint(new Vector3(i,d,1)),
+						Quaternion.identity);
+
+				boundsPause.SetActive(false);
+				gps.SetBoundObj(boundsPause);
+
+				gps.SetPauseText(PauseText);
+
 			}
 		}
     }

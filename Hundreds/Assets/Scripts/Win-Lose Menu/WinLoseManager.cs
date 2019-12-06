@@ -23,11 +23,7 @@ public class WinLoseManager : MonoBehaviour
     public void LoadMainMenu()
     {
 		GameManager.TogglePause();
-
-		// When the player selects the Main Menu, allow them to enter their
-		// highscore after Winning/Losing
-
-        SceneManager.LoadScene("HighScoreEntry");
+    	SceneManager.LoadScene("Main Menu");
     }
 
     public void RestartLevel()
