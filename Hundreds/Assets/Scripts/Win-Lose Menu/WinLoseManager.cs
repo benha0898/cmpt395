@@ -23,6 +23,7 @@ public class WinLoseManager : MonoBehaviour
     public void LoadMainMenu()
     {
 		GameManager.TogglePause();
+		GameManager.ResetGameLevel();
     	SceneManager.LoadScene("Main Menu");
     }
 
