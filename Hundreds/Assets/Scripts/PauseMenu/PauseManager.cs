@@ -29,6 +29,7 @@ public class PauseManager : MonoBehaviour
     public void LoadMainMenu()
     {
 		GameManager.TogglePause();
+		GameManager.ResetGameLevel();
         SceneManager.LoadScene("Main Menu");
     }
 
