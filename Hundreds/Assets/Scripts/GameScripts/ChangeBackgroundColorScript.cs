@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ChangeBackgroundColorScript : MonoBehaviour
 {
-    public Color blue = Color.blue;
-    public Color green = Color.green;
-    public Color yellow = Color.yellow;
-    public Color white = Color.white;
-    public Color red = Color.red;
-    public Color black = Color.black;
-
+	public Color c1, c2, c3, c4, c5, c6;
     private Camera cam;
-
 
     // Start is called before the first frame update
     void Start()
@@ -30,17 +23,17 @@ public class ChangeBackgroundColorScript : MonoBehaviour
         int getLevel = GameManager.GetGameLevel() % 5;
 
         if (getLevel == 1)
-            cam.backgroundColor = Color.Lerp(blue, green, t);
+            cam.backgroundColor = Color.Lerp(c1, c2, t);
         else if (getLevel == 2)
-            cam.backgroundColor = Color.Lerp(green, yellow, t);
+            cam.backgroundColor = Color.Lerp(c2, c3, t);
         else if (getLevel == 3)
-            cam.backgroundColor = Color.Lerp(yellow, white, t);
+            cam.backgroundColor = Color.Lerp(c3, c4, t);
         else if (getLevel == 4)
-            cam.backgroundColor = Color.Lerp(white, red, t);
+            cam.backgroundColor = Color.Lerp(c4, c5, t);
 		else if (getLevel == 5)
-            cam.backgroundColor = Color.Lerp(red, black, t);
+            cam.backgroundColor = Color.Lerp(c5, c6, t);
         else
-            cam.backgroundColor = Color.Lerp(black, blue, t);
+            cam.backgroundColor = Color.Lerp(c6, c1, t);
 
     }
 }
